@@ -1,6 +1,6 @@
 {
   "name": "spmjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Skill Package Manager for Git-based agent skills",
   "type": "module",
   "files": [
