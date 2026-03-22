@@ -12,6 +12,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AxyLm/spm.git"
+  },
+  "homepage": "https://github.com/AxyLm/spm#readme",
+  "bugs": {
+    "url": "https://github.com/AxyLm/spm/issues"
+  },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",

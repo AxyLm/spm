@@ -1,8 +1,12 @@
 # SPM (Skill Package Manager)
 
-SPM is a local **Skill Package Manager** for the current project.
+[![npm version](https://img.shields.io/npm/v/spmjs?logo=npm)](https://www.npmjs.com/package/spmjs)
+[![npm downloads](https://img.shields.io/npm/dm/spmjs?logo=npm)](https://www.npmjs.com/package/spmjs)
+[![CI](https://img.shields.io/github/actions/workflow/status/AxyLm/spm/ci.yml?branch=main&label=ci&logo=githubactions)](https://github.com/AxyLm/spm/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/actions/workflow/status/AxyLm/spm/release.yml?label=release&logo=githubactions)](https://github.com/AxyLm/spm/actions/workflows/release.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/AxyLm/spm/blob/main/package.json)
 
-> 中文文档：[`docs/README.zh-CN.md`](./docs/README.zh-CN.md)
+SPM is a local **Skill Package Manager** for the current project.
 
 It focuses on:
 
@@ -17,7 +21,7 @@ It focuses on:
 
 SPM treats Git repositories as the source of truth for Skills. It installs a Skill from a repo or subdirectory, locks the result to a commit, and places the installed files under `.agents/skills/<name>/` so teams can review, share, and update Skills with normal Git workflows.
 
-For the full design direction, see the [proposal](./PROPOSAL.md).
+For the full design direction, see the [proposal](https://github.com/AxyLm/spm/blob/main/PROPOSAL.md).
 
 ---
 
@@ -42,6 +46,13 @@ cd spm
 pnpm install --frozen-lockfile
 ```
 
+Run without installing:
+
+```bash
+npx spmjs --help
+npx spmjs install https://github.com/github/awesome-copilot/tree/main/skills/git-commit
+```
+
 Build the CLI:
 
 ```bash
@@ -52,7 +63,7 @@ Run the CLI:
 
 ```bash
 node dist/cli.mjs --help
-# or, if linked globally:
+# or, if installed or linked globally:
 spm --help
 ```
 
@@ -63,6 +74,8 @@ spm --help
   "spm": "./dist/cli.mjs"
 }
 ```
+
+The published package name is `spmjs`, and the installed executable is `spm`.
 
 ---
 
@@ -76,16 +89,16 @@ Install a skill from a source string:
 
 ```bash
 # 1) GitHub repo
-spm install vercel-labs/agent-skills
+spm install github/awesome-copilot
 
 # 2) GitHub tree subdirectory
-spm install https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
+spm install https://github.com/github/awesome-copilot/tree/main/skills/git-commit
 
 # 3) GitHub blob URL (parent directory is used as subdir)
-spm install https://github.com/vercel-labs/agent-skills/blob/main/skills/react-best-practices/SKILL.md
+spm install https://github.com/github/awesome-copilot/blob/main/skills/git-commit/SKILL.md
 
 # 4) skills.sh
-spm install https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+spm install https://skills.sh/github/awesome-copilot/git-commit
 
 ```
 
@@ -109,7 +122,7 @@ Example output:
 ```text
 Installed skills (1):
 
-  react-best-practices  https://github.com/vercel-labs/agent-skills (skills/react-best-practices)  @5847a7c
+  git-commit  https://github.com/github/awesome-copilot (skills/git-commit)  @5847a7c
 ```
 
 ---
@@ -117,7 +130,7 @@ Installed skills (1):
 ### `remove`
 
 ```bash
-spm remove react-best-practices
+spm remove git-commit
 ```
 
 What happens:
@@ -131,7 +144,7 @@ What happens:
 ### `update`
 
 ```bash
-spm update react-best-practices
+spm update git-commit
 ```
 
 What happens:
@@ -160,9 +173,9 @@ project/
 ```json
 {
   "skills": {
-    "react-best-practices": {
-      "source": "https://github.com/vercel-labs/agent-skills",
-      "subdir": "skills/react-best-practices",
+    "git-commit": {
+      "source": "https://github.com/github/awesome-copilot",
+      "subdir": "skills/git-commit",
       "ref": "main",
       "commit": "5847a7c7e79bab3e400cf47800b83449d7aea2d4"
     }
@@ -186,4 +199,4 @@ project/
 
 ## Contributing
 
-Contribution guidelines are in [CONTRIBUTING.md](./CONTRIBUTING.md). Release instructions are in [docs/RELEASING.md](./docs/RELEASING.md).
+Contribution guidelines are in [CONTRIBUTING.md](https://github.com/AxyLm/spm/blob/main/CONTRIBUTING.md). Release instructions are in [docs/RELEASING.md](https://github.com/AxyLm/spm/blob/main/docs/RELEASING.md).
