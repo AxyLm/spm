@@ -98,7 +98,7 @@ jobs:
         run: |
           git add package.json pnpm-lock.yaml
           git commit -m "chore(release): ${{ steps.meta.outputs.tag }}"
-          git tag "${{ steps.meta.outputs.tag }}"
+          git tag -a "${{ steps.meta.outputs.tag }}" -m "${{ steps.meta.outputs.tag }}"
 
       - name: Publish to npm
         run: |

@@ -24,7 +24,7 @@ The workflow will:
 - run the release checks
 - publish the package to npm
 - commit the version bump
-- create the matching Git tag
+- create the matching annotated Git tag
 - push the version bump and matching Git tag
 - create the GitHub Release
 
@@ -43,14 +43,14 @@ Manual tag-driven release is still supported if needed:
 git checkout main
 git pull --ff-only origin main
 # update package.json and pnpm-lock.yaml first
-git tag v<version>
+git tag -a v<version> -m "v<version>"
 git push origin main --tags
 ```
 
 Example:
 
 ```bash
-git tag v0.1.0
+git tag -a v0.1.0 -m "v0.1.0"
 git push origin main --tags
 ```
 
@@ -64,7 +64,7 @@ The GitHub Actions workflow in [.github/workflows/release.yml](../.github/workfl
 4. when triggered from a tag push, verifies that the Git tag matches `package.json`
 5. when triggered from a tag push, verifies that the tagged commit is contained in `origin/main`
 6. runs `lint`, `typecheck`, `test`, and `build` through pnpm
-7. when manually triggered, commits the version bump and creates the matching tag locally
+7. when manually triggered, commits the version bump and creates the matching annotated tag locally
 8. publishes the package to npm through pnpm, and only adds provenance when the source repository is public
 9. when manually triggered, pushes the version bump commit and matching tag after npm publish succeeds
 10. creates a GitHub Release with generated notes
