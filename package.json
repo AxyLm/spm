@@ -1,0 +1,54 @@
+{
+  "name": "spmjs",
+  "version": "0.0.0",
+  "description": "Skill Package Manager for Git-based agent skills",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "spm": "./dist/cli.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint": "eslint .",
+    "pretest": "pnpm build",
+    "prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test",
+    "start": "node dist/cli.mjs",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "agent",
+    "skills",
+    "ai",
+    "cli",
+    "cursor",
+    "claude",
+    "codex",
+    "management",
+    "spm"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.13.0",
+    "@vitest/expect": "^4.1.0",
+    "@vitest/runner": "^4.1.0",
+    "eslint": "^9.39.4",
+    "tsdown": "^0.21.4",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.57.1",
+    "vitest": "^4.1.0"
+  }
+}
